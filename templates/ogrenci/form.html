@@ -2,20 +2,49 @@
 {% load crispy_forms_tags %}
 
 {% block body %}
-    <div class="container">
-        <div class="row">
-            <div class="">
+    <Form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row offset-1">
+            <div class="form-group col-md-4 m-1">
 
-                <Form method="POST" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    {#                    {{ forms|crispy }}#}
-                    <table>{{ forms.as_table }}</table>
-                    <input class="btn btn-outline-primary" type="submit" value="Gönder">
-                </Form>
+                {{ forms.ad_soyad|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-4 m-1">
+                {{ forms.tel|as_crispy_field }}
             </div>
         </div>
+        <div class="row offset-1">
+            <div class="form-group col-md-4 m-1">
+                {{ forms.tc|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-4 m-1">
+                {{ forms.aol_no|as_crispy_field }}
+            </div>
+        </div>
+        <div class="row offset-1">
+            <div class="form-group col-md-4 m-1">
+                {{ forms.dogum_tarihi|as_crispy_field }}
+                {{ forms.veli_ad|as_crispy_field }}
+                {{ forms.veli_tel|as_crispy_field }}
 
-    </div>
+                <input class="btn btn-outline-primary mt-5" type="submit" value="Gönder">
+            </div>
+            <div class="form-group col-md-4 m-1">
+                {{ forms.adres|as_crispy_field }}
+            </div>
+        </div>
+        <div class="row offset-1">
+            <div class="form-group col-md-4 m-1">
+
+            </div>
+            <div class="form-group col-md-4 m-1">
+
+            </div>
+        </div>
+    </Form>
+
+
+
 
 
 {% endblock %}

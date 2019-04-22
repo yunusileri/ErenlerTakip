@@ -1,0 +1,46 @@
+{#{% extends 'base.html' %}#}
+{#{% load crispy_forms_tags %}#}
+{##}
+{#<form method="post" class="uniForm">#}
+{#    {{ my_formset|crispy }}#}
+{#</form>#}
+{##}
+{#{% block body %}#}
+{#    <div class="container">#}
+{#        <div class="row">#}
+{##}
+{#            <div class="col-md-6 offset-md-3">#}
+{#                <Form method="POST" enctype="multipart/form-data">#}
+{#                    {% csrf_token %}#}
+{##}
+{#                    <table class="table table-sm table-bordered table-dark">#}
+{#                        <thead>#}
+{#                        <tr>#}
+{#                            <th>#</th>#}
+{#                            {% for ders in dersler %}#}
+{#                                <th>{{ ders.ders_adi }}</th>#}
+{#                            {% endfor %}#}
+{#                        </tr>#}
+{#                        </thead>#}
+{#                        <tbody>#}
+{#                        {% for ogrenci in ogrenciler %}#}
+{#                            <tr id="{{ ogrenci.tc }}">#}
+{#                                <th>{{ ogrenci.adSoyad }}</th>#}
+{#                                {% for ders in dersler %}#}
+{#                                    <th><input type="checkbox" id="{{ ders.Id_ders }}"></th>#}
+{#                                {% endfor %}#}
+{#                            </tr>#}
+{#                        {% endfor %}#}
+{#                        </tbody>#}
+{#                    </table>#}
+{##}
+{#                    <input class="btn btn-outline-primary" type="submit" value="Gönder">#}
+{##}
+{#                </Form>#}
+{#            </div>#}
+{#        </div>#}
+{##}
+{#    </div>#}
+{##}
+{##}
+{#{% endblock %}#}

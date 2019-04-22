@@ -7,7 +7,7 @@ class Ogrenci(models.Model):
     ad_soyad = models.CharField(max_length=50, verbose_name='Adı', null=False)
     dogum_tarihi = models.DateField(verbose_name='Doğum Tarihi', null=True)
     tel = models.CharField(max_length=10, verbose_name='Telefon Numarası')
-    aol_no = models.CharField(max_length=10, verbose_name='AOL Num', null=True)
+    aol_no = models.CharField(max_length=10, verbose_name='AOL Num', null=False)
     veli_ad = models.CharField(max_length=50, verbose_name='Veli Adı', null=False)
     veli_tel = models.CharField(max_length=10, verbose_name='Veli Tel', null=False)
     adres = models.TextField(verbose_name='Adres', null=True)
@@ -25,5 +25,3 @@ class Ogrenci(models.Model):
 
     def get_delete_url(self):
         return reverse('ogrenci:sil', kwargs={'tc': self.tc})
-
-

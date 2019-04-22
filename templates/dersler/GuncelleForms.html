@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block body %}
+    <div class="container col-md-2 ">
+        <div class="row">
+
+            <div class="form-group">
+
+
+                <Form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ forms|crispy }}
+                    <input class="btn btn-outline-primary" type="submit" value="Gönder">
+                                  <a href="{{ ders.get_sil_url }}" class="btn btn-outline-danger" role="button">Sil</a>
+                </Form>
+            </div>
+            <div class="">
+
+            </div>
+            <div class="">
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+{% endblock %}
+

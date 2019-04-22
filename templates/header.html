@@ -9,10 +9,10 @@
 
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
 
-        <a class="navbar-brand" href="{% url 'accounts:home' %}">Anasayfa</a>
+        <a class="navbar-brand" href="{% url 'user:home' %}">Anasayfa</a>
         <ul class="navbar-nav ">
 
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown active">
 
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
@@ -32,51 +32,48 @@
 
             </li>
 
-            {#            <li class="nav-item dropdown">#}
-            {##}
-            {#                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"#}
-            {#                   aria-haspopup="true" aria-expanded="false">#}
-            {#                    Dersler#}
-            {#                </a>#}
-            {##}
-            {#                <div class="dropdown-menu" aria-labelledby="navbarDropdown">#}
-            {##}
-            {#                    <a class="dropdown-item" href="{% url 'dersler:listele' %}">Listele</a>#}
-            {#                    <div class="dropdown-divider"></div>#}
-            {#                    <a class="dropdown-item" href="{% url 'dersler:ekle' %}">Ekle</a>#}
-            {#                    <a class="dropdown-item" href="{% url 'dersler:dersogrencilistele' %}">Ders Öğrenci Listele</a>#}
-            {#                    <a class="dropdown-item" href="{% url 'dersler:dersogrenciekle' %}">Ders Öğrenci Ekle</a>#}
-            {##}
-            {#                </div>#}
-            {##}
-            {% if not request.user.is_authenticated %}
-                <li class="nav-item active m-auto">
-                    <a class="nav-link" href="{% url 'accounts:login' %}">Giriş<span
-                            class="sr-only">(current)</span></a>
-                </li>
-                {#                                <li class="nav-item active">#}
-                {#                                    <a class="nav-link" href="{% url 'accounts:register' %}">Üye Ol <span#}
-                {#                                class="sr-only">(current)</span></a>#}
-                {#                    </li>#}
-                {##}
-            {% else %}
+            <li class="nav-item dropdown active">
 
-                <li class="nav-item active m-auto">
-                    <a class="nav-link" href="{% url 'accounts:logout' %}">Çıkış<span
-                            class="sr-only">(current)</span></a>
-                </li>
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false ">
+                    Dersler
+                </a>
 
-                <li class="nav-item active m-auto">
-                    <a class="nav-link" href="{% url 'accounts:ogretmenEkle' %}">Öğretmen Ekle<span
-                            class="sr-only">(current)</span></a>
-                </li>
-                {##}
-            {% endif %}
-            {#        #}
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-            <li class="nav-item">
+                    <a class="dropdown-item" href="{% url 'dersler:listele' %}">Listele</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{% url 'dersler:ekle' %}">Ekle</a>
+{#                    <a class="dropdown-item" href="{% url 'dersler:dersogrencilistele' %}">Ders Öğrenci Listele</a>#}
+{#                    <a class="dropdown-item" href="{% url 'dersler:dersogrenciekle' %}">Ders Öğrenci Ekle</a>#}
+
+                    {#                </div>#}
+
+            <li class="nav-item active">
                 <a class="nav-link" href="admin/">Admin</a>
             </li>
+            {% if not request.user.is_authenticated %}
+                <li class="nav-item active m-auto">
+                    <a class="nav-link" href="{% url 'user:login' %}">Giriş<span
+                            class="sr-only">(current)</span></a>
+                </li>
+
+            {% else %}
+
+
+
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'user:ogretmenEkle' %}">Öğretmen Ekle<span
+                            class="sr-only">(current)</span></a>
+                </li>
+                <lu class="nav-item ">
+                    <a class="nav-link" href="{% url 'user:logout' %}">Çıkış<span
+                            class="sr-only">(current)</span></a>
+                </lu>
+
+            {% endif %}
+
+
         </ul>
 
 

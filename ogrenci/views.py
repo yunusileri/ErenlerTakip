@@ -4,34 +4,25 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 from .forms import OgrenciForm
 from .models import Ogrenci
-
-from django.contrib.auth.decorators import login_required, user_passes_test
-
-
-# Create your views here.
-
-# def is_member_list(user):
-#     return user.groups.filter(name__in=['ogretmenler', 'yonetici', 'root']).exists()
-
-
-# def is_member_yonetici(user):
-#     return user.groups.filter(name__in=['yonetici']).exists()
+from django.contrib.auth.decorators import login_required
 
 
 def home_view(request):
     return render(request, 'home.html', {'title': 'Anasayfa'})
 
 
-@login_required
-# @user_passes_test(is_member_list)
 def ogrenci_listele(request):
+    if not request.user.is_authenticated or not request.user.is_admin:
+        messages.success(request, 'Bu sayfayı görüntülemek için izniniz yok!')
+        return redirect('user:login')
     ogrenciler = Ogrenci.objects.all()
     return render(request, 'ogrenci/listele.html', {'ogrenciler': ogrenciler})
 
 
-@login_required
-# @user_passes_test(is_member_yonetici)
 def ogrenci_ekle(request):
+    if not request.user.is_authenticated or not request.user.is_admin:
+        messages.success(request, 'Bu sayfayı görüntülemek için izniniz yok!')
+        return redirect('user:login')
     forms = OgrenciForm(request.POST or None)
     if forms.is_valid():
         forms.save()
@@ -41,9 +32,10 @@ def ogrenci_ekle(request):
     return render(request, 'ogrenci/form.html', context)
 
 
-@login_required
-# @user_passes_test(is_member_yonetici)
 def Excel(request):
+    if not request.user.is_authenticated or not request.user.is_admin:
+        messages.success(request, 'Bu sayfayı görüntülemek için izniniz yok!')
+        return redirect('user:login')
     if request.method == 'POST':
         upload_file = request.FILES['document']
         data = pandas.read_excel(io=upload_file, sheet_name=0)  # , encoding='utf-8'
@@ -65,9 +57,10 @@ def Excel(request):
     return render(request, 'ogrenci/excelForm.html')
 
 
-@login_required
-# @user_passes_test(is_member_yonetici)
 def ogrenci_duzenle(request, tc):
+    if not request.user.is_authenticated or not request.user.is_admin:
+        messages.success(request, 'Bu sayfayı görüntülemek için izniniz yok!')
+        return redirect('user:login')
     ogrenci = get_object_or_404(Ogrenci, tc=tc)
     forms = OgrenciForm(request.POST or None, instance=ogrenci)
 
@@ -80,9 +73,10 @@ def ogrenci_duzenle(request, tc):
     return render(request, 'ogrenci/updateForm.html', context)
 
 
-@login_required
-# @user_passes_test(is_member_yonetici)
 def ogrenci_sil(request, tc):
+    if not request.user.is_authenticated or not request.user.is_admin:
+        messages.success(request, 'Bu sayfayı görüntülemek için izniniz yok!')
+        return redirect('user:login')
     ogrenci = get_object_or_404(Ogrenci, tc=tc)
     ogrenci.delete()
     messages.success(request, 'Kayıt Silindi.')

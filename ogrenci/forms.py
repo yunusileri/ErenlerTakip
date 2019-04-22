@@ -6,7 +6,7 @@ class OgrenciForm(forms.ModelForm):
     class Meta:
         model = Ogrenci
         fields = [
-
+            'tc',
             'ad_soyad',
             'dogum_tarihi',
             'tel',
