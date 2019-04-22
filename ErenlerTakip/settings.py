@@ -32,6 +32,7 @@ INSTALLED_APPS = [
 
     'User.apps.UserConfig',  # Kullanıcı Modeli Belirtilir
     'crispy_forms',
+    'ogrenci',
 
 ]
 AUTH_USER_MODEL = 'User.User'

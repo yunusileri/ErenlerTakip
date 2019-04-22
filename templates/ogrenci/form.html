@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="">
+
+                <Form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {#                    {{ forms|crispy }}#}
+                    <table>{{ forms.as_table }}</table>
+                    <input class="btn btn-outline-primary" type="submit" value="Gönder">
+                </Form>
+            </div>
+        </div>
+
+    </div>
+
+
+{% endblock %}
+

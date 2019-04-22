@@ -24,6 +24,7 @@ class UserManager(BaseUserManager):
             username=username,
             password=password,
             is_staff=True)
+        return user
 
     def create_superuser(self, username, password):
         user = self.create_user(
@@ -38,8 +39,8 @@ class UserManager(BaseUserManager):
 class User(AbstractBaseUser):
     username = models.CharField(max_length=128, unique=True)
     active = models.BooleanField(default=True)  # can login
-    staff = models.BooleanField(default=True)  # staff user non superuser
-    admin = models.BooleanField(default=True)  # superuser
+    staff = models.BooleanField(default=False)  # staff user non superuser
+    admin = models.BooleanField(default=False)  # superuser
     timestamp = models.DateTimeField(auto_now_add=True)
     ogretmen_mi = models.BooleanField(default=False)
 
