@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'ogrenci',
     'dersler',
+    'ogrenci_dersleri',
 
 ]
 AUTH_USER_MODEL = 'User.User'
