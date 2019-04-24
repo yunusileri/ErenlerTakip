@@ -5,10 +5,10 @@ app_name = 'dersler'
 
 urlpatterns = [
 
-    path('listele', ders_Listele, name='listele'),
-    path('ekle', ders_Ekle, name='ekle'),
-    path('duzenle/<Id_ders>/', ders_Duzenle, name='duzenle'),
-    path('sil/<Id_ders>/', ders_Sil, name='sil'),
+    path('listele', ders_listele, name='listele'),
+    path('ekle', ders_ekle, name='ekle'),
+    path('duzenle/<Id_ders>/', ders_duzenle, name='duzenle'),
+    path('sil/<Id_ders>/', ders_sil, name='sil'),
 
     # path('dersogrencilistele', dersogrenci_Listele, name='dersogrencilistele'),
     # path('dersogrenciekle', dersogrenci_Ekle, name='dersogrenciekle'),

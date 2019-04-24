@@ -22,9 +22,9 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
 
-                    <a class="dropdown-item" href=" {% url 'ogrenci:listele' %}">Listele</a>
+                    <a class="dropdown-item" href=" {% url 'ogrenci:ogrencilistele' %}">Listele</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="   {% url 'ogrenci:ekle' %}">Tek Kayıt</a>
+                    <a class="dropdown-item" href="   {% url 'ogrenci:ogrenciekle' %}">Tek Kayıt</a>
                     <a class="dropdown-item" href=" {% url 'ogrenci:excel_Ekle' %}">Excelden İçe Aktar</a>
 
                 </div>
@@ -48,9 +48,18 @@
                     {#                    <a class="dropdown-item" href="{% url 'dersler:dersogrenciekle' %}">Ders Öğrenci Ekle</a>#}
 
                     {#                </div>#}
-            <li class="nav-item active">
-                <a class="nav-link" href="{% url 'dersOgrenci:hebele' %}/">Ders Öğrenci Ekle</a>
-            </li>
+            <li class="nav-item dropdown active">
+
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false ">
+                    Öğrenci Dersleri
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+
+                    <a class="dropdown-item" href="{% url 'dersogrenci:ekle' %}">Ders Öğrenci Ekle</a>
+                    <a class="dropdown-item" href="{% url 'dersogrenci:excel_Ekle' %}">Excel</a>
+
             <li class="nav-item active">
                 <a class="nav-link" href="admin/">Admin</a>
             </li>

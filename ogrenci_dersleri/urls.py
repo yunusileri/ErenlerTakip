@@ -1,9 +1,9 @@
 from django.urls import path
+from .views import *
 
-from ogrenci_dersleri.views import ogrenci_dersleri_ekle
-
-app_name = 'dersOgrenci'
+app_name = 'dersogrenci'
 
 urlpatterns = [
-    path('hebele', ogrenci_dersleri_ekle, name='hebele')
+    path('ekle', ogrenci_dersleri_ekle, name='ekle'),
+    path('ekle_excel', Excel, name='excel_Ekle'),
 ]

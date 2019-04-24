@@ -1,8 +1,5 @@
 from django import forms
 
-from ogrenci.models import Ogrenci
-from dersler.models import Dersler
-
 from .models import ogrenci_dersleri
 
 
@@ -13,6 +10,8 @@ class DersOgrenciForm(forms.ModelForm):
             'Id_dersogrenci',
             'ders',
             'ogrenci',
-            # 'ekle'
 
         ]
+
+
+

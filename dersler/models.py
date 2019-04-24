@@ -8,7 +8,7 @@ class Dersler(models.Model):
     ders_yili = models.DateField(auto_now_add=True, verbose_name='Ders Yılı')
     ogretmen = models.ForeignKey('User.User', verbose_name='Öğretmen', on_delete=models.CASCADE,
                                  related_name='ders',
-                                 limit_choices_to={'ogretmen_mi': "True"})
+                                 limit_choices_to={'ogretmen_mi': 'True'})
 
     # limit_choices_to={'groups__name': "ogretmenler"} sadece öğretmen grubuna dahil kişileri eklenebilir yapar.
 
@@ -24,4 +24,3 @@ class Dersler(models.Model):
 
     def get_update_url(self):
         return reverse('dersler:duzenle', kwargs={'Id_ders': self.Id_ders})
-

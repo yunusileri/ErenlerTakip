@@ -18,5 +18,5 @@ class OgrenciForm(forms.ModelForm):
         ]
 
 
-class ExcelIceAktar(forms.Form):
-    dosya = forms.FileField(label='Excel Dosyasını Seçiniz!')
+# class ExcelIceAktar(forms.Form):
+#     dosya = forms.FileField(label='Excel Dosyasını Seçiniz!')

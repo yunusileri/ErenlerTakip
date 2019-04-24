@@ -9,12 +9,19 @@ from ogrenci.models import Ogrenci
 
 # from .models import  DersOgrenci
 
-def ders_Listele(request):
+def ders_listele(request):
+    if not request.user.is_authenticated or not request.user.is_admin:
+        messages.success(request, 'Bu sayfayı görüntülemek için izniniz yok!')
+        return redirect('user:login')
     dersler = Dersler.objects.all()
     return render(request, 'dersler/listele.html', context={'dersler': dersler})
 
 
-def ders_Ekle(request):
+def ders_ekle(request):
+    if not request.user.is_authenticated or not request.user.is_admin:
+        messages.success(request, 'Bu sayfayı görüntülemek için izniniz yok!')
+        return redirect('user:login')
+
     forms = DersForm(request.POST or None)
     if forms.is_valid():
         forms.save()
@@ -24,7 +31,10 @@ def ders_Ekle(request):
     return render(request, 'dersler/Forms.html', context=context)
 
 
-def ders_Duzenle(request, Id_ders):
+def ders_duzenle(request, Id_ders):
+    if not request.user.is_authenticated or not request.user.is_admin:
+        messages.success(request, 'Bu sayfayı görüntülemek için izniniz yok!')
+        return redirect('user:login')
     ders = get_object_or_404(Dersler, Id_ders=Id_ders)
     forms = DersForm(request.POST or None, instance=ders)
     if forms.is_valid():
@@ -35,7 +45,10 @@ def ders_Duzenle(request, Id_ders):
     return render(request, 'dersler/GuncelleForms.html', context=context)
 
 
-def ders_Sil(request, Id_ders):
+def ders_sil(request, Id_ders):
+    if not request.user.is_authenticated or not request.user.is_admin:
+        messages.success(request, 'Bu sayfayı görüntülemek için izniniz yok!')
+        return redirect('user:login')
     ders = get_object_or_404(Dersler, Id_ders=Id_ders)
     ders.delete()
     messages.success(request, 'Kayıt Silindi.')

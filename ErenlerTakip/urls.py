@@ -22,6 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('ogrenci/', include('ogrenci.urls')),
     path('dersler/', include('dersler.urls')),
-    path('dersOgrenci/', include('ogrenci_dersleri.urls')),
+    path('dersogrenci/', include('ogrenci_dersleri.urls')),
 
 ]

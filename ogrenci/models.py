@@ -17,11 +17,11 @@ class Ogrenci(models.Model):
         return self.ad_soyad
 
     def get_update_url(self):
-        return reverse('ogrenci:duzenle', kwargs={'tc': self.tc})
+        return reverse('ogrenci:ogrenciduzenle', kwargs={'tc': self.tc})
 
     @staticmethod
     def get_list_url():
-        return reverse('ogrenci:listele')
+        return reverse('ogrenci:ogrencilistele')
 
     def get_delete_url(self):
-        return reverse('ogrenci:sil', kwargs={'tc': self.tc})
+        return reverse('ogrenci:ogrencisil', kwargs={'tc': self.tc})
