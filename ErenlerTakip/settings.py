@@ -35,6 +35,8 @@ INSTALLED_APPS = [
     'ogrenci',
     'dersler',
     'ogrenci_dersleri',
+    'devamsizlik'
+
 
 ]
 AUTH_USER_MODEL = 'User.User'

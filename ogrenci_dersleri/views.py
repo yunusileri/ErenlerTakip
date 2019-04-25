@@ -9,7 +9,7 @@ import pandas
 
 def ogrenci_dersleri_ekle(request):
     if not request.user.is_authenticated or not request.user.is_admin:
-        messages.success(request, 'Bu sayfayı goruntulemek için yetkiniz yok!')
+        messages.success(request, 'Bu sayfayı görüntülemek için izniniz yok!')
         return redirect('user:login')
 
     forms = DersOgrenciForm(request.POST or None)

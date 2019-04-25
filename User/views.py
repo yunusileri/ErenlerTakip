@@ -27,10 +27,10 @@ def ogretmen_ekle_view(request):
         user = form.save(commit=False)
         password = form.cleaned_data.get('password1')
         user.set_password(password)
-        user.is_ogretmen_mi = True
+        user.ogretmen_mi = True
+
+
         user.save()
-        # group = Group.objects.get(name='ogretmen')
-        # user.groups.add(group)
         new_user = authenticate(request, username=user.username, password=password)
         login(request, new_user)
         return redirect('user:home')

@@ -14,7 +14,6 @@ class OgrenciForm(forms.ModelForm):
             'veli_ad',
             'veli_tel',
             'adres',
-            'aktif',
         ]
 
 

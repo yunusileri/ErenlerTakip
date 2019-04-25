@@ -23,5 +23,6 @@ urlpatterns = [
     path('ogrenci/', include('ogrenci.urls')),
     path('dersler/', include('dersler.urls')),
     path('dersogrenci/', include('ogrenci_dersleri.urls')),
+    path('devamsizlik/', include('devamsizlik.urls')),
 
 ]

@@ -27,7 +27,7 @@ def ogrenci_ekle(request):
     if forms.is_valid():
         forms.save()
         messages.success(request, 'Kayıt Eklendi', extra_tags='Mesaj Başarılı')
-        return HttpResponseRedirect('')
+        return redirect('ogrenci:ogrencilistele')
     context = {'forms': forms}
     return render(request, 'ogrenci/form.html', context)
 
