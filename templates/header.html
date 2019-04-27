@@ -67,6 +67,11 @@
                         <a class="nav-link" href="{% url 'user:ogretmenEkle' %}">Öğretmen Ekle</a>
                     </li>
                 {% endif %}
+                {% if request.user.is_authenticated and request.user.is_ogretmen_mi %}
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'dersogrenci:siniflar' %}">Sınıflarım</a>
+                    </li>
+                {% endif %}
             </ul>
 
         </div>

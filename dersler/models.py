@@ -1,5 +1,7 @@
 from django.db import models
 from django.urls import reverse
+from ogrenci_dersleri.models import ogrenci_dersleri
+from django.shortcuts import render
 
 
 class Dersler(models.Model):
@@ -14,6 +16,11 @@ class Dersler(models.Model):
 
     def __str__(self):
         return self.ders_adi
+
+    def get_IDders(self):
+        # dersogrenci = ogrenci_dersleri.objects.filter(ders__Id_ders=self.Id_ders)
+        # return render('devamsizlik/Forms.html', context=dersogrenci)
+        return reverse('devamsizlik:dersi_alanlar', kwargs={'Id_ders': self.Id_ders})
 
     @property
     def get_list_url(self):

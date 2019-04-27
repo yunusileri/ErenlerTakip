@@ -40,3 +40,9 @@ def Excel(request):
         return redirect('user:home')
 
     return render(request, 'ogrenci_dersleri/excelForm.html')
+
+
+def siniflari_listele(request):
+    siniflar = Dersler.objects.filter(ogretmen=request.user)
+    context = {'siniflar': siniflar}
+    return render(request, 'ogrenci_dersleri/siniflarilistele.html', context=context)

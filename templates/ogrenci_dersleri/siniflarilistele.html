@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+
+
+    <div class="container" style="margin-left: 40%">
+        {% for sinif in siniflar %}
+            <a href="{{ sinif.get_IDders }}" class="btn btn-outline-success" role="button"
+               style="margin: 10px">{{ sinif.ders_adi }}</a><br>
+        {% endfor %}
+
+
+    </div>
+
+{% endblock %}

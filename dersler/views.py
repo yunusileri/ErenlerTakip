@@ -48,3 +48,4 @@ def ders_sil(request, Id_ders):
     ders.delete()
     messages.success(request, 'Kayıt Silindi.')
     return redirect('dersler:listele')
+

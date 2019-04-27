@@ -12,12 +12,14 @@ class ogrenci_dersleri(models.Model):
     def __str__(self):
         return self.ogrenci.ad_soyad
 
-    # @property
-    # def get_list_url(self):
-    #     return reverse('dersler:dersogrencilistele')
-    #
-    # def get_sil_url(self):
-    #     return reverse('dersler:dersogrencisil', kwargs={'Id_dersogrenci': self.Id_dersogrenci})
-    #
-    # def get_update_url(self):
-    #     return reverse('dersler:dersogrenciduzenle', kwargs={'Id_dersogrenci': self.Id_dersogrenci})
+
+
+# @property
+# def get_list_url(self):
+#     return reverse('dersler:dersogrencilistele')
+#
+# def get_sil_url(self):
+#     return reverse('dersler:dersogrencisil', kwargs={'Id_dersogrenci': self.Id_dersogrenci})
+#
+# def get_update_url(self):
+#     return reverse('dersler:dersogrenciduzenle', kwargs={'Id_dersogrenci': self.Id_dersogrenci})

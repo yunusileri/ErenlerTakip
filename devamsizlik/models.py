@@ -12,3 +12,4 @@ class Devamsizlik(models.Model):
 
     def __str__(self):
         return self.ogrenci.ogrenci.ad_soyad
+
