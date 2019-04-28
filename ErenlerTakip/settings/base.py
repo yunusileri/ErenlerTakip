@@ -12,13 +12,9 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 SECRET_KEY = '@+s4$an(xam@h_k!-blmo3q4fp^&adx)=6&hvpgj6l2xml#mc0'
-
-
-
-# Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -28,16 +24,17 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'User.apps.UserConfig',  # Kullanıcı Modeli Belirtilir
+    # Kullanıcı Modeli Belirtilir
+    'User.apps.UserConfig',
     'crispy_forms',
     'ogrenci',
     'dersler',
     'ogrenci_dersleri',
     'devamsizlik'
 
-
 ]
 AUTH_USER_MODEL = 'User.User'
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -69,8 +66,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'ErenlerTakip.wsgi.application'
 
-
-
 AUTH_PASSWORD_VALIDATORS = [
     # {
     #     'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -97,38 +92,3 @@ USE_L10N = True
 USE_TZ = True
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 STATIC_URL = '/static/'
-
-#   Geliştirici Ayarları
-"""
-DEBUG = True
-
-ALLOWED_HOSTS = []
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-"""
-
-
-#   Sunucu Ayarları
-
-DEBUG = False
-
-ALLOWED_HOSTS =['localhost']
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'erenler',
-        'USER': 'yunus',
-        'PASSWORD': '1',
-        'HOST': 'localhost',
-        'PORT': '',
-    }
-}
- STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-

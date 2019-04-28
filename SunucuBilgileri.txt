@@ -1,0 +1,47 @@
+CREATE DATABASE erenler;
+CREATE USER yunus WITH PASSWORD '1';
+ALTER ROLE yunus SET client_encoding TO 'utf8';
+ALTER ROLE yunus SET default_transaction_isolation TO 'read committed';
+ALTER ROLE yunus SET timezone TO 'Europe/Istanbul';
+GRANT ALL PRIVILEGES ON DATABASE erenler TO yunus 
+
+[Unit]
+Description=gunicorn daemon
+After=network.target
+
+[Service]
+User=yunus
+Group=www-data
+WorkingDirectory=/home/yunus/ErenlerTakip
+ExecStart=/home/yunus/ErenlerTakip/venv/bin/gunicorn --access-logfile - --workers 3 --bind unix:/home/yunus/ErenlerTakip/ErenlerTakip.sock ErenlerTakip.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
+
+sudo systemctl stop gunicorn
+sudo systemctl disable gunicorn
+sudo systemctl start gunicorn
+sudo systemctl enable gunicorn
+
+# Nginx
+sudo nano /etc/nginx/sites-available/erenlertakip
+server {
+    listen 80;
+    server_name 192.168.182.128;
+    root /home/yunus/ErenlerTakip; # Projenin kök dizini
+
+    location /static/ {
+    }
+
+    location /media/ {
+    }
+
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/home/yunus/ErenlerTakip/ErenlerTakip.sock;  # Projenin kök dizinindeki 'proje_adý.sock' dosyasý
+    }
+}
+
+sudo ln -s /etc/nginx/sites-available/erenlertakip /etc/nginx/sites-enabled
+
+sudo systemctl restart nginx
