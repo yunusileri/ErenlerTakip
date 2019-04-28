@@ -1,4 +1,7 @@
+from ErenlerTakip.settings.base import *
+
 #   Geliştirici Ayarları
+
 
 DEBUG = True
 
