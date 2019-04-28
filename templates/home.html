@@ -6,9 +6,10 @@
 {% block title %}Anasayfa-{{ block.super }}{% endblock %}
 
 {% block body %}
-<div class="container-fluid">
+<div class="container-fluid col-xs-6">
 
-    <h3> {{ request.user.username }}</h3>
+    <h3>Hoşgeldiniz{{ request.user.username }}</h3>
+    <h2>Deneme</h2>
 
 </div>
 
