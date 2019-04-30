@@ -36,6 +36,7 @@ def Excel(request):
     if not request.user.is_authenticated or not request.user.is_admin:
         messages.success(request, 'Bu sayfayı görüntülemek için izniniz yok!')
         return redirect('user:login')
+
     if request.method == 'POST':
         upload_file = request.FILES['document']
         data = pandas.read_excel(io=upload_file, sheet_name=0)  # , encoding='utf-8'
