@@ -80,4 +80,4 @@ def ogrenci_sil(request, tc):
     ogrenci = get_object_or_404(Ogrenci, tc=tc)
     ogrenci.delete()
     messages.success(request, 'Kayıt Silindi.')
-    return redirect('ogrencilistele')
+    return redirect('ogrenci:ogrencilistele')
