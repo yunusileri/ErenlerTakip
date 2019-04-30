@@ -4,7 +4,7 @@ from ErenlerTakip.settings.base import *
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['192.168.43.236']
+ALLOWED_HOSTS = ['192.168.182.129']
 
 DATABASES = {
     'default': {
