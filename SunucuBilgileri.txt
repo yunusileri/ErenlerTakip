@@ -22,12 +22,13 @@ sudo systemctl stop gunicorn
 sudo systemctl disable gunicorn
 sudo systemctl start gunicorn
 sudo systemctl enable gunicorn
+sudo systemctl restart gunicorn
 
 # Nginx
 sudo nano /etc/nginx/sites-available/erenlertakip
 server {
     listen 80;
-    server_name 192.168.182.128;
+    server_name 192.168.182.129;
     root /home/yunus/ErenlerTakip; # Projenin kök dizini
 
     location /static/ {
@@ -45,3 +46,5 @@ server {
 sudo ln -s /etc/nginx/sites-available/erenlertakip /etc/nginx/sites-enabled
 
 sudo systemctl restart nginx
+DJANGO_SETTINGS_MODULE="ErenlerTakip.settings.production"
+export DJANGO_SETTINGS_MODULE
