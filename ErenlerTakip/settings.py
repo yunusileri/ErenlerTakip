@@ -1,7 +1,7 @@
 import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-print(BASE_DIR)
+
 SECRET_KEY = '@+s4$an(xam@h_k!-blmo3q4fp^&adx)=6&hvpgj6l2xml#mc0'
 
 INSTALLED_APPS = [
@@ -84,7 +84,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 STATIC_URL = '/static/'
 
 #   Geliştirici
-
+"""
 DEBUG = True
 
 ALLOWED_HOSTS = []
@@ -96,15 +96,14 @@ DATABASES = {
     }
 }
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-
-
+"""
 
 #   Yayın
 
-"""
+
 DEBUG = False
 
-ALLOWED_HOSTS = ['192.168.182.129']
+ALLOWED_HOSTS = ['192.168.43.119']
 
 DATABASES = {
     'default': {
@@ -117,4 +116,3 @@ DATABASES = {
     }
 }
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-"""

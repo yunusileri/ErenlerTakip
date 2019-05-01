@@ -6,15 +6,18 @@
 
     <div class="collapse navbar-collapse" id="navbarToggler">
 
-        <div class="navbar-collapse w-100">
-            <ul class="navbar-nav mr-auto">
+        <div class="navbar-collapse">
+            <ul class="navbar-nav">
+
                 <a class="navbar-brand" href="{% url 'user:home' %}">Anasayfa</a>
+
                 {% if request.user.is_authenticated and request.user.is_admin %}
+
                     <li class="nav-item dropdown active">
 
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                           data-toggle="dropdown"
-                           aria-haspopup="true" aria-expanded="false">
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
                             Öğrenci
                         </a>
 
@@ -73,33 +76,25 @@
                     </li>
                 {% endif %}
             </ul>
-
         </div>
+        <div class="navbar-expand">
 
-        {#        Orta  #}
-        <div class="mx-auto order-0">
-            {% if request.user.is_authenticated and request.user.is_admin %}
-                <a class="navbar-brand mx-auto" href="{% url 'admin:login' %}">Admin</a>
-            {% endif %}
-        </div>
+            <ul class="navbar-nav">
 
 
-        {#        Sağ   #}
-        <div class="navbar-collapse w-100 order-3 dual-collapse2">
-            <ul class="navbar-nav ml-auto">
-                {% if not request.user.is_authenticated %}
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{% url 'user:login' %}">Giriş</a>
-                    </li>
+                {% if request.user.is_authenticated %}
+
+                    {% if request.user.is_admin %}
+                        <a class="nav-link active" href="{% url 'admin:login' %}">Admin</a>
+                    {% endif %}
+                    <a class="nav-link active" href="{% url 'user:logout' %}">Çıkış</a>
+
                 {% else %}
-                    <lu class="nav-item active">
-                        <a class="nav-link" href="{% url 'user:logout' %}">Çıkış</a>
-                    </lu>
-
+                    <a class="nav-link active" href="{% url 'user:login' %}">Giriş</a>
                 {% endif %}
             </ul>
-        </div>
 
+        </div>
     </div>
 
 </nav>

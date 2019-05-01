@@ -14,6 +14,7 @@ def login_view(request):
         password = form.cleaned_data.get('password')
         user = authenticate(request, username=username, password=password)
         login(request, user)
+
         return redirect('user:home')
     return render(request, 'accounts/form.html', {'forms': form, 'title': 'Giriş Yap'})
 
@@ -29,11 +30,9 @@ def ogretmen_ekle_view(request):
         user.set_password(password)
         user.ogretmen_mi = True
 
-
         user.save()
-        new_user = authenticate(request, username=user.username, password=password)
-        login(request, new_user)
-        return redirect('user:home')
+
+        return redirect('user:ogretmenEkle')
 
     return render(request, 'accounts/form.html', {'forms': form, 'title': 'Kaydet'})
 
