@@ -1,13 +1,13 @@
 from django.db import models
 from django.urls import reverse
+
 from ogrenci_dersleri.models import ogrenci_dersleri
-from django.shortcuts import render
 
 
 class Dersler(models.Model):
     Id_ders = models.AutoField(verbose_name='Id', primary_key=True)
     ders_adi = models.CharField(verbose_name='Ders', max_length=25)
-    ders_yili = models.DateField(auto_now_add=True, verbose_name='Ders Yılı')
+    ders_yili = models.CharField(max_length=4, verbose_name='Ders Yılı', null=True)
     ogretmen = models.ForeignKey('User.User', verbose_name='Öğretmen', on_delete=models.CASCADE,
                                  related_name='ders',
                                  limit_choices_to={'ogretmen_mi': 'True'})
