@@ -10,7 +10,7 @@ class Ogrenci(models.Model):
     aol_no = models.CharField(max_length=10, verbose_name='AOL Num', null=False)
     veli_ad = models.CharField(max_length=50, verbose_name='Veli Adı', null=False)
     veli_tel = models.CharField(max_length=10, verbose_name='Veli Tel', null=False)
-    adres = models.TextField(verbose_name='Adres', null=True)
+    adres = models.CharField(max_length=200, verbose_name='Adres', null=True)
     aktif = models.BooleanField(default=True, null=False)
 
     def __str__(self):

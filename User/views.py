@@ -16,7 +16,7 @@ def login_view(request):
         login(request, user)
 
         return redirect('user:home')
-    return render(request, 'accounts/form.html', {'forms': form, 'title': 'Giriş Yap'})
+    return render(request, 'form.html', {'forms': form, 'title': 'Giriş Yap'})
 
 
 def ogretmen_ekle_view(request):
@@ -34,7 +34,7 @@ def ogretmen_ekle_view(request):
 
         return redirect('user:ogretmenEkle')
 
-    return render(request, 'accounts/form.html', {'forms': form, 'title': 'Kaydet'})
+    return render(request, 'form.html', {'forms': form, 'title': 'Kaydet'})
 
 
 def logout_view(request):

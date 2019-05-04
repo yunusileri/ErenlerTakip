@@ -4,49 +4,44 @@
 
 
 {% block body %}
-
     <link rel="stylesheet" href="{% static 'css/dersi_alanlar.css' %}">
-    <div class="container">
-        <div class="row">
+    {#    <div class="container">#}
+    <Form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
 
-{#            <div class="col-md-6 offset-md-3">#}
-                <Form method="POST" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <table class="table table-sm table-bordered">
-                        <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Öğrenci</th>
-                            <th>Geldi Mi?</th>
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="thead-light">
+                <tr>
+                    <th scope="col" width="40%">İsim</th>
+                    <th scope="col" width="5%"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
 
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for  ogrencis in dersogrenci %}
-                            <tr>
-                                <td><a href="">{{ forloop.counter }}</a></td>
+                    {% for ogrencis in dersogrenci %}
+                        <td>{{ ogrencis.ogrenci.ad_soyad }}
+                            <hr>
+                        </td>
+                        <td>
 
-                                <td><a>{{ ogrencis.ogrenci.ad_soyad }}</a></td>
-                                <td>
+                            <label>
+                                <input type="checkbox" name={{ ogrencis.ogrenci.ad_soyad }}
+                                        value={{ ogrencis.Id_dersogrenci }}>
 
-                                    <input type="checkbox" name={{ ogrencis.ogrenci.ad_soyad }}
-                                            value={{ ogrencis.Id_dersogrenci }}>
-                                </td>
+                            </label>
 
-                            </tr>
-
-                        {% endfor %}
-                        </tbody>
-                    </table>
-
-                    <input class="btn btn-outline-primary" type="submit" value="Gönder">
-
-                </Form>
-{#            </div>#}
+                        </td>
+                    {% endfor %}
+                </tr>
+                </tbody>
+            </table>
+            <div style="text-align: center;">
+                <input class="btn btn-outline-primary" type="submit" value="Gönder">
+            </div>
         </div>
 
-    </div>
-
-
-
+    </Form>
+    {#    </div>#}
 {% endblock %}

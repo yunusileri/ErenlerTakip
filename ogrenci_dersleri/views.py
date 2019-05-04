@@ -17,8 +17,8 @@ def ogrenci_dersleri_ekle(request):
         forms.save()
         messages.success(request, 'Kayıt başarılı bir şekilde eklendi.')
         return redirect('user:home')
-    context = {'forms': forms}
-    return render(request, 'ogrenci_dersleri/Forms.html', context=context)
+    context = {'forms': forms, 'title': 'Kaydet'}
+    return render(request, 'form.html', context=context)
 
 
 def Excel(request):
@@ -39,7 +39,7 @@ def Excel(request):
             i.save()
         return redirect('user:home')
 
-    return render(request, 'ogrenci_dersleri/excelForm.html')
+    return render(request, 'ExcelIceAktar.html')
 
 
 def siniflari_listele(request):

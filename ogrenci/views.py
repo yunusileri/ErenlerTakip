@@ -1,10 +1,19 @@
 import pandas
 from django.contrib import messages
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
-from .forms import OgrenciForm
-from .models import Ogrenci
-from django.contrib.auth.decorators import login_required
+from ogrenci.forms import OgrenciForm
+from ogrenci.models import Ogrenci
+from ogrenci.excel_aktarim import *
+
+
+def ogrencileri_excele_aktar(request):
+    ogrenciler = Ogrenci.objects.all()
+    ogrencileri_al(ogrenciler)
+    response = HttpResponse(open(f'{BASE_DIR}/static/öğrenciler.xls', 'rb').read())
+    response['Content-Type'] = 'application/vnd.ms-excel'
+    response['Content-Disposition'] = f'attachment; filename=ogrenciler.xls'
+    return response
 
 
 def home_view(request):
@@ -16,6 +25,7 @@ def ogrenci_listele(request):
         messages.success(request, 'Bu sayfayı görüntülemek için izniniz yok!')
         return redirect('user:login')
     ogrenciler = Ogrenci.objects.all()
+
     return render(request, 'ogrenci/listele.html', {'ogrenciler': ogrenciler})
 
 
@@ -29,33 +39,33 @@ def ogrenci_ekle(request):
         messages.success(request, 'Kayıt Eklendi', extra_tags='Mesaj Başarılı')
         return redirect('ogrenci:ogrencilistele')
     context = {'forms': forms}
-    return render(request, 'ogrenci/form.html', context)
+    return render(request, 'ogrenci/ogrenci_ekle_form.html', context)
 
 
-def Excel(request):
+def excel_ice_aktar_ogrenci(request):
     if not request.user.is_authenticated or not request.user.is_admin:
         messages.success(request, 'Bu sayfayı görüntülemek için izniniz yok!')
         return redirect('user:login')
 
     if request.method == 'POST':
         upload_file = request.FILES['document']
-        data = pandas.read_excel(io=upload_file, sheet_name=0)  # , encoding='utf-8'
-        ogrenciler = []
+        data = pandas.read_excel(io=upload_file, sheet_name=0)
         for index in range(len(data)):
-            ogrenciler.append(Ogrenci())
-            ogrenciler[index].tc = data.iloc[index, 0]
-            ogrenciler[index].ad_soyad = data.iloc[index, 1]
-            ogrenciler[index].dogum_tarihi = data.iloc[index, 2]
-            ogrenciler[index].tel = data.iloc[index, 3]
-            ogrenciler[index].aol_no = data.iloc[index, 4]
-            ogrenciler[index].veli_ad = data.iloc[index, 5]
-            ogrenciler[index].veli_tel = data.iloc[index, 6]
-            ogrenciler[index].adres = data.iloc[index, 7]
-        for ogrenci in ogrenciler:
+            ogrenci = Ogrenci()
+            ogrenci.tc = data.iloc[index, 0]
+            ogrenci.ad_soyad = data.iloc[index, 1]
+            ogrenci.dogum_tarihi = data.iloc[index, 2]
+            ogrenci.tel = data.iloc[index, 3]
+            ogrenci.aol_no = data.iloc[index, 4]
+            ogrenci.veli_ad = data.iloc[index, 5]
+            ogrenci.veli_tel = data.iloc[index, 6]
+            ogrenci.adres = data.iloc[index, 7]
+            ogrenci.aktif = data.iloc[index, 8]
             ogrenci.save()
+
         return redirect('ogrenci:ogrencilistele')
 
-    return render(request, 'ogrenci/excelForm.html')
+    return render(request, 'ExcelIceAktar.html')
 
 
 def ogrenci_duzenle(request, tc):

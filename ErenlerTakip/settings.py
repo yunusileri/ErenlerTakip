@@ -84,7 +84,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 STATIC_URL = '/static/'
 
 #   Geliştirici
-"""
+
 DEBUG = True
 
 ALLOWED_HOSTS = []
@@ -96,11 +96,11 @@ DATABASES = {
     }
 }
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-"""
+
 
 #   Yayın
 
-
+"""
 DEBUG = False
 
 ALLOWED_HOSTS = ['192.168.43.119']
@@ -116,3 +116,4 @@ DATABASES = {
     }
 }
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+"""

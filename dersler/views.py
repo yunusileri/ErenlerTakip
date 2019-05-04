@@ -22,8 +22,8 @@ def ders_ekle(request):
         forms.save()
         messages.success(request, 'Kayıt Eklendi.')
         return redirect('dersler:listele')
-    context = {'forms': forms}
-    return render(request, 'dersler/Forms.html', context=context)
+    context = {'forms': forms, 'title': 'Kaydet'}
+    return render(request, 'form.html', context=context)
 
 
 def ders_duzenle(request, Id_ders):
@@ -48,4 +48,3 @@ def ders_sil(request, Id_ders):
     ders.delete()
     messages.success(request, 'Kayıt Silindi.')
     return redirect('dersler:listele')
-
