@@ -48,3 +48,4 @@ sudo ln -s /etc/nginx/sites-available/erenlertakip /etc/nginx/sites-enabled
 sudo systemctl restart nginx
 DJANGO_SETTINGS_MODULE="ErenlerTakip.settings.production"
 export DJANGO_SETTINGS_MODULE
+Yunusileri
