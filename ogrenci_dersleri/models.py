@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class ogrenci_dersleri(models.Model):
@@ -12,8 +13,8 @@ class ogrenci_dersleri(models.Model):
     def __str__(self):
         return self.ogrenci.ad_soyad
 
-
-
+    def get_ders_id(self):
+        return reverse('devamsizlik:duzenle', kwargs={'Id_ders': self.ders.Id_ders})
 # @property
 # def get_list_url(self):
 #     return reverse('dersler:dersogrencilistele')

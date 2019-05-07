@@ -7,6 +7,13 @@ from ogrenci.models import Ogrenci
 import pandas
 
 
+def deneme(request):
+    ogrenciler = Ogrenci.objects.all()
+    dersler = Dersler.objects.all()
+    context = {'dersler': dersler, 'ogrenciler': ogrenciler}
+    return render(request, 'ogrenci_dersleri/Ekle.html', context=context)
+
+
 def ogrenci_dersleri_ekle(request):
     if not request.user.is_authenticated or not request.user.is_admin:
         messages.success(request, 'Bu sayfayı görüntülemek için izniniz yok!')

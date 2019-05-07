@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+
+{% block body %}
+    <div class="table-responsive col-md-8" style="text-align: center">
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th>Öğrenci</th>
+                {#                <th>Gün</th>#}
+                <th>Saat</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for devamsizlik in devamsizliklar %}
+                <tr>
+                    <th>
+                        <a href="{{ devamsizlik.devamsizlik_sil_url }}">{{ devamsizlik.ogrenci.ogrenci.ad_soyad }}</a>
+                    </th>
+                    <th> {{ devamsizlik.saat }}</th>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

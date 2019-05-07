@@ -3,6 +3,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .forms import DersForm
 from .models import Dersler
 from datetime import datetime
+from User.models import User
 
 
 def ders_listele(request):
@@ -20,11 +21,8 @@ def ders_ekle(request):
 
     forms = DersForm(request.POST or None)
     if forms.is_valid():
-        form = forms.save(commit=False)
-        ders = Dersler()
-        ders.ogretmen = form.cleaned_data.get('ogretmen')
-        ders.ders_adi = form.cleaned_data.get('ders_adi')
-        ders.ders_yili = str(datetime.now().year)
+        forms.save()
+
         messages.success(request, 'Kayıt Eklendi.')
         return redirect('dersler:listele')
     context = {'forms': forms, 'title': 'Kaydet'}

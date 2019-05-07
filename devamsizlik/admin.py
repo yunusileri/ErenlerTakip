@@ -5,7 +5,7 @@ from .models import Devamsizlik
 
 
 class DevamsizlikAdmin(admin.ModelAdmin):
-    list_display = ['Id_devamsizlik', 'ogrenci', 'devamsizlik_tarihi']  # Listelerken Göstermek için
+    list_display = ['ogrenci', 'devamsizlik_tarihi', 'saat']  # Listelerken Göstermek için
 
     class Meta:
         model = Devamsizlik

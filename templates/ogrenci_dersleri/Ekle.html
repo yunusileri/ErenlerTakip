@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block body %}
+    <div class="container">
+        <div class="row ">
+            <div class="table-responsive col-md-8">
+                <table class="table">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Ders</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for  ogrenci in ogrenciler %}
+                        <tr>
+                            <td>{{ ogrenci.ad_soyad }}</td>
+                        </tr>
+
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="table-responsive col-md-4">
+                <table class="table">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Ders</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for  ders in dersler %}
+                        <tr>
+                            <td>{{ ders.ders_adi }}</td>
+                            <td></td>
+                        </tr>
+
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

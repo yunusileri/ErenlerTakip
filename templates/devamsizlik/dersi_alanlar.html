@@ -5,43 +5,46 @@
 
 {% block body %}
     <link rel="stylesheet" href="{% static 'css/dersi_alanlar.css' %}">
-    {#    <div class="container">#}
-    <Form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
+    <div class="container col-md-3 col-xs-8">
+        <Form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
 
-        <div class="table-responsive">
-            <table class="table">
-                <thead class="thead-light">
-                <tr>
-                    <th scope="col" width="40%">İsim</th>
-                    <th scope="col" width="5%"></th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead class="thead-light">
+                    <tr>
+                        <th scope="col" width="40%">İsim</th>
+                        <th scope="col" width="5%"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
 
                     {% for ogrencis in dersogrenci %}
-                        <td>{{ ogrencis.ogrenci.ad_soyad }}
-                            <hr>
-                        </td>
-                        <td>
+                        <tr>
+                            <td>{{ ogrencis.ogrenci.ad_soyad }}
 
-                            <label>
-                                <input type="checkbox" name={{ ogrencis.ogrenci.ad_soyad }}
-                                        value={{ ogrencis.Id_dersogrenci }}>
+                            </td>
+                            <td>
 
-                            </label>
+                                <label>
+                                    <input type="checkbox" name={{ ogrencis.ogrenci.ad_soyad }}
+                                            value={{ ogrencis.Id_dersogrenci }}>
 
-                        </td>
+                                </label>
+
+                            </td>
+                        </tr>
                     {% endfor %}
-                </tr>
-                </tbody>
-            </table>
-            <div style="text-align: center;">
-                <input class="btn btn-outline-primary" type="submit" value="Gönder">
-            </div>
-        </div>
 
-    </Form>
-    {#    </div>#}
+                    </tbody>
+                </table>
+                <div style="text-align: center;">
+                    <input class="btn btn-outline-primary" type="submit" value="Gönder">
+                    <a class="btn btn-outline-danger" href="{{ dersogrenci.0.get_ders_id }}">Duzenle</a>
+                </div>
+            </div>
+
+        </Form>
+    </div>
 {% endblock %}

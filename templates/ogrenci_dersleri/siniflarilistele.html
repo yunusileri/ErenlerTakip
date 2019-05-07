@@ -3,9 +3,9 @@
 {% load static %}
 {% block body %}
 
-<link rel="stylesheet" href="{% static 'css/siniflar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/siniflar.css' %}">
 
-    <div class="container" style="width: 50%;">
+    <div class="container col-md-6 col-xs-8" style="text-align: center">
         {% for sinif in siniflar %}
             <a href="{{ sinif.get_IDders }}" class="btn btn-outline-success" role="button"
                style="margin: 10px">{{ sinif.ders_adi }}</a><br>
