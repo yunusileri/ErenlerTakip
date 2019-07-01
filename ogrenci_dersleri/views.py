@@ -1,36 +1,45 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
-from .forms import DersOgrenciForm
+
 from .models import ogrenci_dersleri
 from dersler.models import Dersler
 from ogrenci.models import Ogrenci
 import pandas
 
 
-def deneme(request):
-    ogrenciler = Ogrenci.objects.all()
-    dersler = Dersler.objects.all()
-    context = {'dersler': dersler, 'ogrenciler': ogrenciler}
-    return render(request, 'ogrenci_dersleri/Ekle.html', context=context)
-
-
-def ogrenci_dersleri_ekle(request):
+def ogrenci_ders_ekle(request):
     if not request.user.is_authenticated or not request.user.is_admin:
-        messages.success(request, 'Bu sayfayı görüntülemek için izniniz yok!')
+        messages.error(request, 'Bu sayfayı görüntülemek için izniniz yok!')
         return redirect('user:login')
 
-    forms = DersOgrenciForm(request.POST or None)
-    if forms.is_valid():
-        forms.save()
-        messages.success(request, 'Kayıt başarılı bir şekilde eklendi.')
-        return redirect('user:home')
-    context = {'forms': forms, 'title': 'Kaydet'}
-    return render(request, 'form.html', context=context)
+    ogrenciler = Ogrenci.objects.all()
+    dersler = Dersler.objects.all()
+    if request.POST:
+        tc = []
+        dersID = []
+        for ogrenci in ogrenciler:
+            temp = request.POST.get(ogrenci.ad_soyad)
+            if temp is not None:
+                tc.append(temp)
+        for ders in dersler:
+            temp = request.POST.get(ders.ders_adi)
+            if temp is not None:
+                dersID.append(temp)
+        for Id in dersID:
+            ders = get_object_or_404(Dersler, Id_ders=Id)
+            for temp_tc in tc:
+                ogr = get_object_or_404(Ogrenci, tc=temp_tc)
+                dersogr = ogrenci_dersleri(ders=ders, ogrenci=ogr)
+                dersogr.save()
+
+    context = {'ogrenciler': ogrenciler, 'dersler': dersler}
+
+    return render(request, 'ogrenci_dersleri/ders_ekle2.html', context=context)
 
 
 def Excel(request):
     if not request.user.is_authenticated or not request.user.is_admin:
-        messages.success(request, 'Bu sayfayı görüntülemek için izniniz yok!')
+        messages.error(request, 'Bu sayfayı görüntülemek için izniniz yok!')
         return redirect('user:login')
 
     if request.method == 'POST':
@@ -50,6 +59,9 @@ def Excel(request):
 
 
 def siniflari_listele(request):
+    if not request.user.is_authenticated or not request.user.is_ogretmen_mi:
+        messages.error(request, 'Bu sayfayı görüntülemek için izniniz yok!')
+        return redirect('user:login')
     siniflar = Dersler.objects.filter(ogretmen=request.user)
     context = {'siniflar': siniflar}
     return render(request, 'ogrenci_dersleri/siniflarilistele.html', context=context)

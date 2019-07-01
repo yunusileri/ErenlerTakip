@@ -7,21 +7,23 @@
 
 {% block body %}
     <div class="container">
-        {% if not request.user.is_authenticated %}
-            <meta http-equiv="REFRESH" content="0;url=/login/">
-        {% else %}
-            {% if  request.user.is_ogretmen_mi %}
+        <div class="jumbotron">
+            {% if not request.user.is_authenticated %}
+                <meta http-equiv="REFRESH" content="0;url=/login/">
+            {% else %}
+                {% if  request.user.is_ogretmen_mi %}
 
-                <meta http-equiv="REFRESH" content="0;url=/dersogrenci/siniflar">
+                    <meta http-equiv="REFRESH" content="0;url=/dersogrenci/siniflar">
+                {% endif %}
             {% endif %}
-        {% endif %}
-        <div style="text-align: center;">
 
-            <h3>Hoşgeldiniz {{ request.user.username }}</h3>
+            <div style="text-align: center;">
+
+                <h3>Hoşgeldiniz {{ request.user.username }}</h3>
+            </div>
+
+
         </div>
-
-
     </div>
-
 
 {% endblock %}}

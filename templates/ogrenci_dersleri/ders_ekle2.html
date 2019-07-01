@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Öğrenciye Ders Ekle-{{ block.super }}{% endblock %}
+{% block body %}
+    <link rel="stylesheet" href="{% static 'css/dersekle.css' %}">
+    <Form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="container-fluid">
+            <div class="row">
+                <div class="ogrenciler col-md-3">
+
+                    <table class="table" style="align-items: center; text-align: center;">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th>#</th>
+                            <th>İsim</th>
+                            <th>Onay</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for ogrenci in ogrenciler %}
+
+                            <tr>
+                                <td style="width: 20%">{{ forloop.counter }}</td>
+                                <td> {{ ogrenci.ad_soyad }}</td>
+                                <td>
+                                    <label>
+                                        <input type="checkbox" name={{ ogrenci.ad_soyad }}
+                                                value={{ ogrenci.tc }}>
+                                    </label>
+                                </td>
+                            </tr>
+
+                        {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="dersler col-md-3">
+                    <table class="table" style="align-items: center; text-align: center;">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th>Ders</th>
+                            <th>Öğretmen</th>
+                            <th>Onay</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for ders in dersler %}
+
+                            <tr>
+                                <td style="width: 20%">{{ ders.ders_adi }}</td>
+                                <td> {{ ders.ogretmen.username }}</td>
+                                <td>
+                                    <label>
+                                        <input type="checkbox" name={{ ders.ders_adi }}
+                                                value={{ ders.Id_ders }}>
+                                    </label>
+                                </td>
+                            </tr>
+
+                        {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="deneme1 col-md-3">
+                    <input class="btn btn-outline-primary" type="submit" value="Gönder">
+                </div>
+            </div>
+
+        </div>
+    </Form>
+{% endblock %}
