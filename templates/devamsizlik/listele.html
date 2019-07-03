@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+
+    <link rel="stylesheet" href="{% static 'css/devamsizlikListele.css' %}">
+    <div class="row">
+        <div class="container col-md-8" style="background: #4f4f4f">
+
+            <table class="table">
+                <thead class="table-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Öğrenci</th>
+                    <th>Tarih</th>
+                    <th>Ders</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {% for devamsizlik in devamsizliklar %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>
+                            {{ devamsizlik.ogrenci.ogrenci.ad_soyad }}
+                        </td>
+                        <td>
+                            {{ devamsizlik.devamsizlik_tarihi }} {{ devamsizlik.saat }}
+                        </td>
+                        <td>
+                            {{ devamsizlik.ogrenci.ders.ders_adi }}
+                        </td>
+                    </tr>
+                {% endfor %}
+
+
+                </tbody>
+
+            </table>
+
+
+        </div>
+        <div class="container col-md-4" style="background: #0b2e13">
+            <div class="row">
+                <select class="form-control col-md-3" onchange="tarih_filtresi(this.value)">
+                    <option>Tarih</option>
+                    <option id="bugun">Bugün</option>
+                    <option id="haftalik">Haftalık</option>
+                    <option id="aylik">Aylık</option>
+                    <option id="yillik">Yıllık</option>
+                </select>
+
+                <select class="form-control col-md-3" onchange="ders_filtresi(this.value)">
+                    <option>Ders</option>
+                    {% for ders in dersler %}
+                        <option id="{{ ders.ders_adi }}">{{ ders.ders_adi }}</option>
+                    {% endfor %}
+
+                </select>
+                <div class="dropdown col-md-3" style="margin-right: 5px;">
+                    <button onclick="myFunction()" class="dropbtn">Dropdown</button>
+                    <div id="myDropdown" class="dropdown-content">
+                        <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+
+                        {% for ogrenci in ogrenciler %}
+                            <a onclick="aClick({{ ogrenci.tc }})">{{ ogrenci.ad_soyad }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <script src="{% static 'js/devamsilzik_filtresi.js' %}"></script>
+{% endblock %}

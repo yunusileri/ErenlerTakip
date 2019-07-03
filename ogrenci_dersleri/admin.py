@@ -4,7 +4,7 @@ from .models import ogrenci_dersleri
 
 # Register your models here.
 class ogrenci_dersleri_admin(admin.ModelAdmin):
-    list_display = ['ogrenci', 'ders']  # Listelerken Göstermek için
+    list_display = ['Id_dersogrenci', 'ogrenci', 'ders']  # Listelerken Göstermek için
     list_display_links = ['ogrenci']  # link oluşturmak için
     list_filter = ['ders', 'ogrenci']  # Filtreleme yapmak için
     list_editable = ['ders']

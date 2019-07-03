@@ -20,19 +20,16 @@
                     <tbody>
 
 
-                    {% for ogrencis in dersogrenci %}
+                    {% for ogr in dersogrenci %}
                         <tr>
-                            <td>{{ ogrencis.ogrenci.ad_soyad }}
+                            <td>{{ ogr.ogrenci.ad_soyad }}
 
                             </td>
                             <td>
-
                                 <label>
-                                    <input type="checkbox" name={{ ogrencis.ogrenci.ad_soyad }}
-                                            value={{ ogrenci.tc }}>
-
+                                    <input type="checkbox" name={{ ogr.ogrenci.tc }}
+                                            value={{ ogr.Id_dersogrenci }}>
                                 </label>
-
                             </td>
                         </tr>
                     {% endfor %}

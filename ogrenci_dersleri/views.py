@@ -34,7 +34,7 @@ def ogrenci_ders_ekle(request):
 
     context = {'ogrenciler': ogrenciler, 'dersler': dersler}
 
-    return render(request, 'ogrenci_dersleri/ders_ekle2.html', context=context)
+    return render(request, 'ogrenci_dersleri/ders_ekle.html', context=context)
 
 
 def Excel(request):

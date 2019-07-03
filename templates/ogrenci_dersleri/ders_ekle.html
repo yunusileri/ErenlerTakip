@@ -41,6 +41,7 @@
                     <table class="table" style="align-items: center; text-align: center;">
                         <thead class="thead-dark">
                         <tr>
+                            <th>#</th>
                             <th>Ders</th>
                             <th>Öğretmen</th>
                             <th>Onay</th>
@@ -50,6 +51,7 @@
                         {% for ders in dersler %}
 
                             <tr>
+                                <td style="width:10%">{{ forloop.counter }}</td>
                                 <td style="width: 20%">{{ ders.ders_adi }}</td>
                                 <td> {{ ders.ogretmen.username }}</td>
                                 <td>
