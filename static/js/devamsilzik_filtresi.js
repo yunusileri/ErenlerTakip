@@ -20,8 +20,12 @@ function zamanBelirle(uRl, t = "Bugün") {
     let index = -1;
     let tarih = "";
     let dizi = ["Y%C4%B1ll%C4%B1k", "Ayl%C4%B1k", "Haftal%C4%B1k", "Bug%C3%BCn"];
-    for (let i = 0; i < 4; i++) {
+    let results = new Array;
+    let dersindex = 0
+    let i;
+    for (i = 0; i < 4; i++) {
         index = uRl.indexOf(dizi[i]);
+
         if (index !== -1) {
             switch (uRl[index]) {
                 case "Y":
@@ -37,18 +41,24 @@ function zamanBelirle(uRl, t = "Bugün") {
                     tarih = "Bugün";
                     break;
             }
+
+            dersindex = index + dizi[i].length + 1;
             break;
         } else {
             tarih = t;
         }
     }
-    return tarih;
+
+    results[0] = tarih;
+    results[1] = dersindex;
+
+    return results;
 }
 
 function ders_filtresi(value) {
     let uRl = window.location.href;
-    let tarih = zamanBelirle(uRl);
-    window.location.replace("/devamsizlik/listele/" + tarih + "/" + value);
+    let results = zamanBelirle(uRl);
+    window.location.replace("/devamsizlik/listele/" + results[0] + "/" + value);
 }
 
 
@@ -75,7 +85,15 @@ function filterFunction() {
 
 function aClick(value) {
     let uRl = window.location.href;
+    let results = zamanBelirle(uRl, "Yıllık");
     let ders = "";
-    let tarih = zamanBelirle(uRl, "Yıllık");
-    window.location.replace("/devamsizlik/listele/" + tarih + "/" + ders + "/" + value + "/");
+    for (let i = 0; i < uRl.length - results[1] - 1; i++) {
+        if (uRl[i + results[1]] == "/") {
+            break;
+        } else {
+            ers += uRl[i + results[1]];
+        }
+    }
+
+    window.location.replace("/devamsizlik/listele/" + results[0] + "/" + ders + "/" + value + "/");
 }
